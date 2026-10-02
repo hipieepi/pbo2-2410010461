@@ -170,7 +170,7 @@ public class FormPendaftaran extends javax.swing.JFrame {
 
     private void daftarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_daftarButtonActionPerformed
         // TODO add your handling code here:
-        tampilkanRingkasan();
+//        tampilkanRingkasan();
     }//GEN-LAST:event_daftarButtonActionPerformed
 
     private void temaToggleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_temaToggleActionPerformed
@@ -178,22 +178,22 @@ public class FormPendaftaran extends javax.swing.JFrame {
         gantiTema(temaToggle.isSelected());
     }//GEN-LAST:event_temaToggleActionPerformed
 
-    private void tampilkanRingkasan() {
-        String jenisKelamin = lakiRadio.isSelected() ? "Laki-laki" : "Perempuan";
-        List<String> minat = new ArrayList<>();
-        for (JCheckBox cb : List.of(javaCheck, pythonCheck, webCheck)) {
-            if (cb.isSelected()) {
-                minat.add(cb.getText());
-            }
-        }
-        String pesan = "Nama: " + namaField.getText()
-                + "\nNPM: " + npmField.getText()
-                + "\nProgram Studi: " + prodiCombo.getSelectedItem()
-                + "\nJenis Kelamin: " + jenisKelamin
-                + "\nMinat: " + (minat.isEmpty() ? "-" : String.join(", ", minat));
-        JOptionPane.showMessageDialog(this, pesan, "Data Pendaftaran",
-                JOptionPane.INFORMATION_MESSAGE);
-    }
+//    private void tampilkanRingkasan() {
+//        String jenisKelamin = lakiRadio.isSelected() ? "Laki-laki" : "Perempuan";
+//        List<String> minat = new ArrayList<>();
+//        for (JCheckBox cb : List.of(javaCheck, pythonCheck, webCheck)) {
+//            if (cb.isSelected()) {
+//                minat.add(cb.getText());
+//            }
+//        }
+//        String pesan = "Nama: " + namaField.getText()
+//                + "\nNPM: " + npmField.getText()
+//                + "\nProgram Studi: " + prodiCombo.getSelectedItem()
+//                + "\nJenis Kelamin: " + jenisKelamin
+//                + "\nMinat: " + (minat.isEmpty() ? "-" : String.join(", ", minat));
+//        JOptionPane.showMessageDialog(this, pesan, "Data Pendaftaran",
+//                JOptionPane.INFORMATION_MESSAGE);
+//    }
     private void gantiTema(boolean gelap) {
         if (gelap) {
             FlatDarkLaf.setup();
@@ -224,8 +224,6 @@ public class FormPendaftaran extends javax.swing.JFrame {
         }
         //</editor-fold>
         FlatLightLaf.setup();
-        // Tampilkan form di Event Dispatch Thread
-        java.awt.EventQueue.invokeLater(() -> new FormPendaftaran().setVisible(true));
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new FormPendaftaran().setVisible(true));
     }
