@@ -14,6 +14,7 @@ public class AplikasiPerpustakaan {
         perpus.tambah(new Buku("B001", "Laskar Pelangi", 2005, "Andrea Hirata"));
         perpus.tambah(new Buku("B002", "Clean Code", 2008, "Robert C. Martin"));
         perpus.tambah(new Majalah("M001", "Majalah Teknologi Kita", 2026, "Agustus"));
+        perpus.tambah(new Buku("B009", "", 2020, "Anonim"));
         
         perpus.tambah(new Skripsi(
             "S001",
