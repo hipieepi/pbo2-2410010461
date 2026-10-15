@@ -11,7 +11,7 @@ package id.ac.uniska.pbo2.p01;
 public class KartuMahasiswa {
     public static void main(String[] args) {
         String nama = "Elvira Eri Saputri";
-        String npm = "241001461";
+        String npm = "2410010461";
         String prodi = "Teknik Informatika";
         int semester = 5;
         String alasan = "Ingin belajar lebih dalam tentang java";
