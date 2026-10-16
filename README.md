@@ -77,6 +77,12 @@ Jawaban:
 <img width="1036" height="1280" alt="Foto Sketsa FormAnggotaPerpustakaan" src="https://github.com/user-attachments/assets/cd200057-4655-49ff-b0ca-dff01c3a9b1a" />
 <img width="812" height="217" alt="Screenshot 2026-10-16 001710" src="https://github.com/user-attachments/assets/c11abf3e-4b8c-4dd0-add4-7e3a881a2c7b" />
 
+# Penilaian Tahap 4 dari Putri Sal Sabila 2410010086
+<img width="782" height="767" alt="Tabel Penilaian Tahap 4" src="https://github.com/user-attachments/assets/02d881ca-7fca-4f2f-b672-945a3980e17e" />
+
+Saran Perbaikan
+Susunan radio button Dosen, Mahasiswa, dan Umum perlu diperbaiki agar tidak bertumpuk saat jendela dikecilkan. Selain itu, posisi judul dan keterangan header perlu dirapikan supaya tidak terpotong ketika ukuran jendela berubah.
+
 Pertanyaan Refleksi
 1. Mengapa Null Layout dan Absolute Layout sebaiknya dihindari?
 2. Jelaskan perbedaan perilaku FlowLayout dan GridLayout saat jendela dilebarkan.
