@@ -16,5 +16,10 @@
             <artifactId>flatlaf</artifactId>
             <version>3.5.4</version>
         </dependency>
+        <dependency>
+            <groupId>id.ac.uniska.pbo2</groupId>
+            <artifactId>p04-layout-manager</artifactId>
+            <version>1.0</version>
+        </dependency>
     </dependencies>
 </project>

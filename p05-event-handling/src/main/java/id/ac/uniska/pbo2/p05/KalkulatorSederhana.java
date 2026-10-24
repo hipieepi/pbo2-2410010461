@@ -53,6 +53,7 @@ public class KalkulatorSederhana extends javax.swing.JFrame {
         hapusButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Kalkulator Sederhana");
 
         isiPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(16, 16, 16, 16));
         isiPanel.setLayout(new java.awt.GridLayout(3, 1, 0, 12));
@@ -89,7 +90,7 @@ public class KalkulatorSederhana extends javax.swing.JFrame {
 
         bawahPanel.setLayout(new java.awt.BorderLayout(8, 0));
 
-        hasilLabel.setText("Hasil");
+        hasilLabel.setText("Hasil :");
         bawahPanel.add(hasilLabel, java.awt.BorderLayout.CENTER);
 
         hapusButton.setText("Hapus");
