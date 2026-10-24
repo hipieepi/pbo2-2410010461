@@ -53,7 +53,7 @@ Jawaban
 <img width="903" height="595" alt="Tangkapan Layar Tugas 4 Jendela Lebar" src="https://github.com/user-attachments/assets/45f997b3-479f-4176-b4ec-2b94077f4b88" />
 <img width="415" height="595" alt="Tangkapan Layar Tugas 4" src="https://github.com/user-attachments/assets/a3f1ea2b-76c6-476e-b906-8b3efe01679c" />
 
-Eksperimen praktikum 2
+# Eksperimen praktikum 2
 1. Pada flowPanel, ubah Alignment layout menjadi Center, lalu kecilkan jendela. Apa yang berubah? Baris mana di initComponents() yang ikut berubah?
 2. Pada gridPanel, ubah Rows menjadi 0 dan Columns menjadi 2. Berapa baris yang terbentuk dan mengapa?
 3. Pada boxPanel, isi properti maximumSize keempat tombol dengan lebar 32767 dan tinggi sama dengan
@@ -64,7 +64,7 @@ Jawaban:
 2. Pada GridLayout, nilai Rows = 0 berarti jumlah baris ditentukan secara otomatis berdasarkan jumlah komponen dan jumlah kolom yang ditentukan. Karena Columns bernilai 2 dan terdapat 9 komponen, hasilnya adalah 9 ÷ 2 = 2 baris. Jadi, 4 baris pertama berisi masing-masing 2 komponen, sedangkan baris terakhir berisi 1 komponen.
 3. Lebar keempat tombol dapat melebar hingga memenuhi ruang yang tersedia karena maximumSize diatur menjadi 32767, sedangkan tingginya tetap sama dengan tinggi tombol. Penambahan Vertical Strut di antara tombol berfungsi memberikan jarak vertikal agar tombol tersusun lebih rapi dan tidak terlalu berdekatan.
 
-Eksperimen praktikum 4
+# Eksperimen praktikum 4
 1. Ubah Weight X pada namaField menjadi 0.0, lalu lebarkan jendela. Apa yang terjadi pada isian?
 2. Ubah Direction formPanel di dalam isiPanel dari North menjadi Center, lalu tinggikan jendela. Apa perbedaannya?
 3. Hapus baris setMinimumSize(getSize()) di konstruktor, lalu kecilkan jendela sekecil mungkin. Bagian mana yang rusak lebih dulu?
@@ -78,7 +78,16 @@ Jawaban:
 <img width="812" height="217" alt="Screenshot 2026-10-16 001710" src="https://github.com/user-attachments/assets/c11abf3e-4b8c-4dd0-add4-7e3a881a2c7b" />
 
 # Penilaian Tahap 4 dari Putri Sal Sabila 2410010086
-<img width="782" height="767" alt="Tabel Penilaian Tahap 4" src="https://github.com/user-attachments/assets/02d881ca-7fca-4f2f-b672-945a3980e17e" />
+| No | Pemeriksaan | Ya atau Belum | Keterangan |
+|---:|---|:---:|---|
+| 1 | Label singkat, jelas, dan sejajar | Ya | Label jelas dan kolom isian tersusun sejajar. |
+| 2 | Isian dikelompokkan dengan judul bagian | Ya | Form dibagi menjadi bagian Data Anggota dan Kontak. |
+| 3 | Placeholder dipakai untuk isian yang punya format | Ya | Kolom email dan nomor HP memiliki placeholder. |
+| 4 | Komponen sesuai jenis data | Ya | Komponen yang digunakan sesuai dengan jenis isian. |
+| 5 | Tombol utama menonjol dan berada di kanan bawah | Ya | Tombol Daftar berada di kanan bawah dan mudah ditemukan. |
+| 6 | Jarak antar komponen konsisten | Ya | Jarak antar komponen terlihat cukup rapi. |
+| 7 | Form tetap rapi saat jendela dilebarkan dan ditinggikan | Belum | Radio button bertumpuk dan keterangan header terpotong saat jendela dikecilkan. |
+| 8 | Tampilan dibuat dengan JFrame Form dan layout manager, bukan Null Layout atau Absolute Layout | Ya | Form menggunakan JFrame dan beberapa Layout Manager. |
 
 Saran Perbaikan
 Susunan radio button Dosen, Mahasiswa, dan Umum perlu diperbaiki agar tidak bertumpuk saat jendela dikecilkan. Selain itu, posisi judul dan keterangan header perlu dirapikan supaya tidak terpotong ketika ukuran jendela berubah.
@@ -97,3 +106,59 @@ Jawaban:
 4. Agar form tetap berada di bagian atas dan tidak berpindah ke tengah ketika jendela diperbesar. Dengan demikian, tampilan form lebih teratur dan mudah digunakan.
 5. Konsistensi: Label dan kolom isian disusun secara sejajar sehingga tampilan form terlihat seragam.
 Kerapian dan kemudahan penggunaan: Jarak antar komponen diatur menggunakan Insets agar form mudah dibaca dan digunakan.
+
+# Tugas 5
+
+| No | Tindakan | Event yang Tercatat |
+|---:|---|---|
+| 1 | Arahkan kursor ke tombol, lalu jauhkan | MouseEvent ("Kursor masuk ke tombol" dan "Kursor keluar dari tombol") |
+| 2 | Klik tombol Klik Saya | ActionEvent ("Tombol diklik") |
+| 3 | Centang lalu hapus centang Aktifkan Fitur | ItemEvent ("Kotak dicentang" dan "Centang dihapus") |
+| 4 | Ganti pilihan dari Pagi menjadi Malam | ItemEvent ("Memilih malam") |
+| 5 | Klik isian, lalu ketik kata "abc" | KeyEvent ("Isian mendapat focus", "Mengetik huruf a", "Mengetik huruf b", "Mengetik huruf c") |
+| 6 | Klik tombol setelah mengetik di isian | FocusEvent ("Isian kehilangan focus") |
+
+# Eksperimen praktikum 3
+1. Hapus pemeriksaan if (evt.getStateChange() == ItemEvent.SELECTED) dan tambahkan
+System.out.println("item berubah"); di dalam event handler. Berapa kali pesan tercetak setiap
+pilihan diganti?
+2. Di jendela Properties bagian Events, kosongkan event keyReleased pada celsiusField, lalu buat event
+keyPressed yang memanggil konversi(). Mengapa hasil yang tampil terlambat satu karakter?
+3. Hapus blok try dan catch di method konversi, lalu ketik huruf pada isian. Apa yang muncul di jendela
+Output?
+
+Jawaban:
+1.	Pesan "item berubah" tercetak 2 kali setiap pilihan Combo Box diganti. Hal ini karena itemStateChanged dipanggil dua kali, yaitu saat pilihan lama mengalami DESELECTED dan pilihan baru mengalami SELECTED. Pemeriksaan ItemEvent.SELECTED digunakan agar aksi hanya dijalankan satu kali.
+2.	Karena event keyPressed dijalankan saat tombol keyboard ditekan, sebelum karakter dimasukkan ke dalam celsiusField. Akibatnya, method konversi() membaca nilai isian sebelumnya sehingga hasil konversi terlambat satu karakter. Sebaliknya, keyReleased dijalankan setelah tombol dilepas sehingga karakter sudah masuk ke dalam isian.
+3.	Akan muncul pesan error berupa NumberFormatException di jendela Output karena huruf yang dimasukkan tidak dapat dikonversi menjadi angka oleh Double.parseDouble(). Tanpa blok try-catch, kesalahan tersebut tidak ditangani sehingga proses konversi berhenti dan hasil tidak diperbarui dengan pesan validasi.
+
+
+# Eksperimen praktikum 4
+1. Buat event actionPerformed untuk kaliButton melalui Events tanpa menghapus lambda di konstruktor, lalu
+tambahkan System.out.println("kali"); di kedua tempat. Berapa kali pesan tercetak? Mengapa satu
+tombol sebaiknya hanya memakai satu cara?
+2. Tambahkan tombol % untuk sisa bagi (modulus). Apa saja yang diubah di tab Design dan di tab Source?
+3. Tekan tombol Hapus. Mengapa kursor langsung berada di isian pertama?
+
+Jawaban:
+1.	Pesan kali tercetak sebanyak 2 kali setiap tombol kali ditekan, karena terdapat dua event handler yang dijalankan: satu dari lambda di konstruktor dan satu lagi dari event actionPerformed yang dibuat melalui tab Events.
+Satu tombol sebaiknya hanya menggunakan satu cara penanganan event agar kode tidak dijalankan dua kali, menghindari proses ganda, dan lebih mudah dipelihara.
+2.	Pada tab Design, tambahkan tombol baru dengan teks % dan atur nama variabelnya menjadi modulusButton. Sesuaikan layout agar tombol tersebut sejajar dengan tombol operator lainnya.
+Pada tab Source, tambahkan event untuk tombol modulus dan tambahkan operasi % pada metode hitung() di bagian switch: modulusButton.addActionListener(e -> hitung('%'));
+Tambahkan kode berikut pada switch: case '%' -> a % b;
+3.	Karena method hapus() menjalankan perintah: angka1Field.requestFocusInWindow();
+Perintah tersebut memberikan fokus kembali ke angka1Field setelah kedua isian dikosongkan. Dengan begitu, pengguna dapat langsung memasukkan angka pertama tanpa perlu mengeklik kolom tersebut secara manual.
+
+# Peta Event
+
+| Komponen | Menu Events | Fungsi |
+|---|---|---|
+| `setujuCheck` | Item: `itemStateChanged` | Mengaktifkan `daftarButton` hanya jika `setujuCheck` dicentang. |
+| `batalButton` | Action: `actionPerformed` | Mengosongkan semua isian, menghapus pilihan jenis anggota, mengatur ulang label jumlah digit, dan mengembalikan fokus ke `npmField`. |
+| `daftarButton` | Action: `actionPerformed` | Menampilkan ringkasan data anggota menggunakan `JOptionPane`. |
+| `npmField` | Key: `keyReleased` | Memperbarui teks `jumlahDigitLabel` sesuai jumlah karakter NPM yang diketik. |
+| `FormAnggotaPerpustakaan` (JFrame) | Window: `windowClosing` | Meminta konfirmasi sebelum aplikasi ditutup. |
+
+<img width="327" height="147" alt="Screenshot 2026-10-24 115925" src="https://github.com/user-attachments/assets/2486475b-444b-4751-94e2-bea0c9023942" />
+<img width="328" height="277" alt="Screenshot 2026-10-24 115901" src="https://github.com/user-attachments/assets/8113265a-217f-49d2-a73d-85368632c94c" />
+<img width="1917" height="1020" alt="Screenshot 2026-10-24 115736" src="https://github.com/user-attachments/assets/4a95b4c8-9c01-4f2d-8db0-b2f5d007d098" />
