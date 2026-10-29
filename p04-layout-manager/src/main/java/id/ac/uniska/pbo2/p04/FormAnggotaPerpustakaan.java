@@ -73,7 +73,7 @@ public class FormAnggotaPerpustakaan extends javax.swing.JFrame {
         mahasiswaRadio = new javax.swing.JRadioButton();
         setujuCheck = new javax.swing.JCheckBox();
         tombolPanel = new javax.swing.JPanel();
-        btnBatal = new javax.swing.JButton();
+        batalButton = new javax.swing.JButton();
         daftarButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -298,9 +298,9 @@ public class FormAnggotaPerpustakaan extends javax.swing.JFrame {
         tombolPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 16, 8, 16));
         tombolPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 8, 0));
 
-        btnBatal.setText("Batal");
-        btnBatal.addActionListener(this::btnBatalActionPerformed);
-        tombolPanel.add(btnBatal);
+        batalButton.setText("Batal");
+        batalButton.addActionListener(this::batalButtonActionPerformed);
+        tombolPanel.add(batalButton);
 
         daftarButton.setText("Daftar");
         daftarButton.addActionListener(this::daftarButtonActionPerformed);
@@ -337,7 +337,7 @@ public class FormAnggotaPerpustakaan extends javax.swing.JFrame {
         
     }//GEN-LAST:event_setujuCheckItemStateChanged
 
-    private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
+    private void batalButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_batalButtonActionPerformed
         // TODO add your handling code here:
         npmField.setText("");
         namaField.setText("");
@@ -352,7 +352,7 @@ public class FormAnggotaPerpustakaan extends javax.swing.JFrame {
         jumlahDigitLabel.setText("0 dari 10 digit");
 
         npmField.requestFocusInWindow();
-    }//GEN-LAST:event_btnBatalActionPerformed
+    }//GEN-LAST:event_batalButtonActionPerformed
 
     private void daftarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_daftarButtonActionPerformed
         // TODO add your handling code here:
@@ -424,7 +424,7 @@ public class FormAnggotaPerpustakaan extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel alamatLabel;
     private javax.swing.JTextArea alamatTextArea;
-    private javax.swing.JButton btnBatal;
+    private javax.swing.JButton batalButton;
     private javax.swing.JButton daftarButton;
     private javax.swing.JLabel dataAnggotaLabel;
     private javax.swing.JRadioButton dosenRadio;
