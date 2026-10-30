@@ -108,6 +108,9 @@
             <Component class="javax.swing.JLabel" name="npmLabel">
               <Properties>
                 <Property name="displayedMnemonic" type="int" value="80"/>
+                <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                  <ComponentRef name="npmField"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="NPM"/>
               </Properties>
               <Constraints>
@@ -119,6 +122,9 @@
             <Component class="javax.swing.JLabel" name="namaLabel">
               <Properties>
                 <Property name="displayedMnemonic" type="int" value="78"/>
+                <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                  <ComponentRef name="namaField"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Nama Lengkap"/>
               </Properties>
               <Constraints>
@@ -130,6 +136,9 @@
             <Component class="javax.swing.JLabel" name="prodiLabel">
               <Properties>
                 <Property name="displayedMnemonic" type="int" value="82"/>
+                <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                  <ComponentRef name="prodiCombo"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Program Studi"/>
               </Properties>
               <Constraints>
@@ -141,6 +150,9 @@
             <Component class="javax.swing.JLabel" name="jenisAnggotaLabel">
               <Properties>
                 <Property name="displayedMnemonic" type="int" value="74"/>
+                <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                  <ComponentRef name="jenisPanel"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Jenis Anggota"/>
               </Properties>
               <Constraints>
@@ -176,9 +188,10 @@
             <Component class="javax.swing.JComboBox" name="prodiCombo">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="2">
-                    <StringItem index="0" value="Teknik Informatika"/>
-                    <StringItem index="1" value="Sistem Informasi"/>
+                  <StringArray count="3">
+                    <StringItem index="0" value="Pilih Program Studi"/>
+                    <StringItem index="1" value="Teknik Informatika"/>
+                    <StringItem index="2" value="Sistem Informasi"/>
                   </StringArray>
                 </Property>
               </Properties>
@@ -197,6 +210,9 @@
             <Component class="javax.swing.JLabel" name="emailLabel">
               <Properties>
                 <Property name="displayedMnemonic" type="int" value="69"/>
+                <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                  <ComponentRef name="emailField"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Email"/>
               </Properties>
               <Constraints>
@@ -218,6 +234,9 @@
             <Component class="javax.swing.JLabel" name="nomorHpLabel">
               <Properties>
                 <Property name="displayedMnemonic" type="int" value="72"/>
+                <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                  <ComponentRef name="hpField"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Nomor HP"/>
               </Properties>
               <Constraints>
@@ -229,6 +248,9 @@
             <Component class="javax.swing.JLabel" name="alamatLabel">
               <Properties>
                 <Property name="displayedMnemonic" type="int" value="76"/>
+                <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                  <ComponentRef name="alamatArea"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Alamat"/>
               </Properties>
               <Constraints>

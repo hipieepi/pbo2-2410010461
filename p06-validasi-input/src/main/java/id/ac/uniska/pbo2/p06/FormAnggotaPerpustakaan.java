@@ -7,6 +7,10 @@ package id.ac.uniska.pbo2.p06;
 import com.formdev.flatlaf.FlatLightLaf;
 import javax.swing.JOptionPane;
 import java.awt.event.ItemEvent;
+import javax.swing.text.AbstractDocument;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.DocumentFilter;
 
 /**
  *
@@ -21,6 +25,30 @@ public class FormAnggotaPerpustakaan extends javax.swing.JFrame {
      */
     public FormAnggotaPerpustakaan() {
         initComponents();
+
+        // Hanya menerima angka pada kolom Nomor HP, termasuk saat paste.
+        ((AbstractDocument) hpField.getDocument()).setDocumentFilter(
+            new DocumentFilter() {
+                @Override
+                public void insertString(FilterBypass fb, int offset,
+                        String string, AttributeSet attr) throws BadLocationException {
+                    if (string != null && string.matches("[0-9]*")
+                            && fb.getDocument().getLength() + string.length() <= 13) {
+                        super.insertString(fb, offset, string, attr);
+                    }
+                }
+
+                @Override
+                public void replace(FilterBypass fb, int offset, int length,
+                        String text, AttributeSet attrs) throws BadLocationException {
+                    String input = text == null ? "" : text;
+                    int panjangAkhir = fb.getDocument().getLength() - length + input.length();
+                    if (input.matches("[0-9]*") && panjangAkhir <= 13) {
+                        super.replace(fb, offset, length, input, attrs);
+                    }
+                }
+            }
+        );
         
         npmField.putClientProperty(
             "JTextField.placeholderText", "Contoh: 2410010461"
@@ -181,6 +209,9 @@ public class FormAnggotaPerpustakaan extends javax.swing.JFrame {
         String pesan = "Pendaftaran berhasil."
                 + "\n\nNPM: " + npmField.getText()
                 + "\nNama: " + namaField.getText().trim()
+                + "\nProgram Studi: " + prodiCombo.getSelectedItem()
+                + "\nEmail: " + emailField.getText().trim()
+                + "\nNomor HP: " + hpField.getText().trim()
                 + "\nJenis anggota: " + jenisAnggota();
 
         JOptionPane.showMessageDialog(
@@ -303,6 +334,7 @@ public class FormAnggotaPerpustakaan extends javax.swing.JFrame {
         formPanel.add(dataAnggotaLabel, gridBagConstraints);
 
         npmLabel.setDisplayedMnemonic('P');
+        npmLabel.setLabelFor(npmField);
         npmLabel.setText("NPM");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -312,6 +344,7 @@ public class FormAnggotaPerpustakaan extends javax.swing.JFrame {
         formPanel.add(npmLabel, gridBagConstraints);
 
         namaLabel.setDisplayedMnemonic('N');
+        namaLabel.setLabelFor(namaField);
         namaLabel.setText("Nama Lengkap");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -321,6 +354,7 @@ public class FormAnggotaPerpustakaan extends javax.swing.JFrame {
         formPanel.add(namaLabel, gridBagConstraints);
 
         prodiLabel.setDisplayedMnemonic('R');
+        prodiLabel.setLabelFor(prodiCombo);
         prodiLabel.setText("Program Studi");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -330,6 +364,7 @@ public class FormAnggotaPerpustakaan extends javax.swing.JFrame {
         formPanel.add(prodiLabel, gridBagConstraints);
 
         jenisAnggotaLabel.setDisplayedMnemonic('J');
+        jenisAnggotaLabel.setLabelFor(jenisPanel);
         jenisAnggotaLabel.setText("Jenis Anggota");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -380,7 +415,7 @@ public class FormAnggotaPerpustakaan extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(3, 8, 3, 8);
         formPanel.add(namaField, gridBagConstraints);
 
-        prodiCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Teknik Informatika", "Sistem Informasi" }));
+        prodiCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Program Studi", "Teknik Informatika", "Sistem Informasi" }));
         prodiCombo.addItemListener(this::prodiComboItemStateChanged);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -392,6 +427,7 @@ public class FormAnggotaPerpustakaan extends javax.swing.JFrame {
         formPanel.add(prodiCombo, gridBagConstraints);
 
         emailLabel.setDisplayedMnemonic('E');
+        emailLabel.setLabelFor(emailField);
         emailLabel.setText("Email");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -409,6 +445,7 @@ public class FormAnggotaPerpustakaan extends javax.swing.JFrame {
         formPanel.add(jumlahDigitLabel, gridBagConstraints);
 
         nomorHpLabel.setDisplayedMnemonic('H');
+        nomorHpLabel.setLabelFor(hpField);
         nomorHpLabel.setText("Nomor HP");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -418,6 +455,7 @@ public class FormAnggotaPerpustakaan extends javax.swing.JFrame {
         formPanel.add(nomorHpLabel, gridBagConstraints);
 
         alamatLabel.setDisplayedMnemonic('L');
+        alamatLabel.setLabelFor(alamatArea);
         alamatLabel.setText("Alamat");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;

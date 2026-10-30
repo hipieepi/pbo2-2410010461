@@ -383,6 +383,7 @@ public class FormAnggota extends javax.swing.JFrame {
         prodiCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih program studi", "Teknik Informatika", "Sistem Informasi", "Manajemen Informatika" }));
         prodiCombo.setToolTipText("Pilih salah satu program studi");
         prodiCombo.addItemListener(this::prodiComboItemStateChanged);
+        prodiCombo.addActionListener(this::prodiComboActionPerformed);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 5;
@@ -647,6 +648,10 @@ public class FormAnggota extends javax.swing.JFrame {
     private void namaFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_namaFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_namaFieldActionPerformed
+
+    private void prodiComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prodiComboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_prodiComboActionPerformed
 
     /**
      * @param args the command line arguments
