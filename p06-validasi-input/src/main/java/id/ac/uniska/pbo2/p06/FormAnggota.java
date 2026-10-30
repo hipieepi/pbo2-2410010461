@@ -307,7 +307,7 @@ public class FormAnggota extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(6, 4, 6, 12);
         formPanel.add(npmLabel, gridBagConstraints);
 
-        npmField.setToolTipText("");
+        npmField.setToolTipText("Hanya angka, tepat 10 digit");
         npmField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 npmFieldFocusLost(evt);
@@ -326,6 +326,7 @@ public class FormAnggota extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         formPanel.add(npmField, gridBagConstraints);
 
+        npmPesanLabel.setLabelFor(npmField);
         npmPesanLabel.setText(" ");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -350,6 +351,7 @@ public class FormAnggota extends javax.swing.JFrame {
                 namaFieldFocusLost(evt);
             }
         });
+        namaField.addActionListener(this::namaFieldActionPerformed);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -486,6 +488,11 @@ public class FormAnggota extends javax.swing.JFrame {
         hpField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 hpFieldFocusLost(evt);
+            }
+        });
+        hpField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                hpFieldKeyTyped(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -626,6 +633,20 @@ public class FormAnggota extends javax.swing.JFrame {
             periksaHp();
         }    // TODO add your handling code here:
     }//GEN-LAST:event_hpFieldFocusLost
+
+    private void hpFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_hpFieldKeyTyped
+        boolean penuh = hpField.getText().length() >= 13
+                && hpField.getSelectedText() == null;
+
+        if (!Character.isDigit(evt.getKeyChar()) || penuh) {
+            evt.consume();
+        } 
+            // TODO add your handling code here:
+    }//GEN-LAST:event_hpFieldKeyTyped
+
+    private void namaFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_namaFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_namaFieldActionPerformed
 
     /**
      * @param args the command line arguments
