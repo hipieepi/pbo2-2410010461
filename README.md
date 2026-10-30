@@ -223,7 +223,7 @@ Nama peninjau: Putri Sal Sabila       Nama pemilik form: Elvira Eri Saputri
 
 | No. | Temuan dari Teman | Perbaikan yang Dilakukan | Commit |
 |---|---|---|---|
-| 1 | Ringkasan pendaftaran hanya menampilkan NPM, Nama, dan Jenis Anggota. | Menambahkan informasi Program Studi, Email, dan Nomor HP pada ringkasan pendaftaran. | `fix: melengkapi ringkasan pendaftaran` |
-| 2 | Teks pada kolom Email dan Nomor HP tetap berwarna abu-abu setelah diketik. | Memperbaiki warna teks agar menggunakan warna normal ketika kolom diisi. | `fix: memperbaiki warna teks input` |
-| 3 | ComboBox Program Studi tidak memiliki pilihan awal dan validasi terkadang menganggap pilihan valid sebagai kosong. | Menambahkan pilihan awal "Pilih program studi" dan memperbaiki validasi ComboBox. | `fix: memperbaiki validasi program studi` |
-| 4 | Mnemonic NPM tidak berfungsi ketika menekan Alt+P. | Menghubungkan label NPM dengan kolom input dan memperbaiki fungsi pintasan keyboard. | `fix: memperbaiki mnemonic NPM` |
+| 1 | Ringkasan pendaftaran hanya menampilkan NPM, Nama, dan Jenis Anggota. | Menambahkan informasi Program Studi, Email, dan Nomor HP pada ringkasan pendaftaran. | `fix: Perbaikan dari peer preview heuristik` |
+| 2 | Teks pada kolom Email dan Nomor HP tetap berwarna abu-abu setelah diketik. | Memperbaiki warna teks agar menggunakan warna normal ketika kolom diisi. | `fix: Perbaikan dari peer preview heuristik` |
+| 3 | ComboBox Program Studi tidak memiliki pilihan awal dan validasi terkadang menganggap pilihan valid sebagai kosong. | Menambahkan pilihan awal "Pilih program studi" dan memperbaiki validasi ComboBox. | `fix: Perbaikan dari peer preview heuristik` |
+| 4 | Mnemonic NPM tidak berfungsi ketika menekan Alt+P. | Menghubungkan label NPM dengan kolom input dan memperbaiki fungsi pintasan keyboard. | `fix: Perbaikan dari peer preview heuristik` |
