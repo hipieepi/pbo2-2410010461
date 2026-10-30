@@ -4,6 +4,13 @@
  */
 package id.ac.uniska.pbo2.p07;
 
+import com.formdev.flatlaf.FlatLightLaf;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
+import javax.swing.RowFilter;
+import javax.swing.table.TableRowSorter;
+
 /**
  *
  * @author Asus
@@ -19,6 +26,21 @@ public class AplikasiKontak extends javax.swing.JFrame {
      */
     public AplikasiKontak() {
         initComponents();
+        
+        // Kode tambahan yang tidak tersedia di jendela Properties
+        cariField.putClientProperty("JTextField.placeholderText", "Cari nama, telepon, email");
+        kontakTable.setRowSorter(sorter); // klik judul kolom untuk mengurutkan
+        kontakTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        kontakTable.getColumnModel().getColumn(0).setPreferredWidth(170);
+        kontakTable.getColumnModel().getColumn(2).setPreferredWidth(200);
+        
+// Tombol Ubah dan Hapus hanya aktif jika ada baris yang dipilih
+        kontakTable.getSelectionModel().addListSelectionListener(e -> perbaruiTombol());
+        isiContoh();
+        perbaruiTombol();
+        perbaruiStatus();
+        setSize(780, 460);
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -41,11 +63,15 @@ public class AplikasiKontak extends javax.swing.JFrame {
         kontakTable = new javax.swing.JTable();
         statusLabel = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        fileMenu = new javax.swing.JMenu();
+        keluarItem = new javax.swing.JMenuItem();
+        kontakMenu = new javax.swing.JMenu();
+        tambahItem = new javax.swing.JMenuItem();
+        ubahItem = new javax.swing.JMenuItem();
+        jSeparator2 = new javax.swing.JPopupMenu.Separator();
+        hapusItem = new javax.swing.JMenuItem();
+        bantuanMenu = new javax.swing.JMenu();
+        tentangItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -55,6 +81,7 @@ public class AplikasiKontak extends javax.swing.JFrame {
         tombolPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 8, 0));
 
         tambahButton.setText("Tambah");
+        tambahButton.addActionListener(this::tambahButtonActionPerformed);
         tombolPanel.add(tambahButton);
 
         ubahButton.setMnemonic('E');
@@ -64,11 +91,17 @@ public class AplikasiKontak extends javax.swing.JFrame {
 
         hapusButton.setMnemonic('D');
         hapusButton.setText("Hapus");
+        hapusButton.addActionListener(this::hapusButtonActionPerformed);
         tombolPanel.add(hapusButton);
 
         atasPanel.add(tombolPanel, java.awt.BorderLayout.LINE_START);
 
         cariField.setColumns(20);
+        cariField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cariFieldKeyReleased(evt);
+            }
+        });
         atasPanel.add(cariField, java.awt.BorderLayout.LINE_END);
 
         getContentPane().add(atasPanel, java.awt.BorderLayout.PAGE_START);
@@ -77,31 +110,58 @@ public class AplikasiKontak extends javax.swing.JFrame {
         tabelPanel.setLayout(new java.awt.BorderLayout());
 
         kontakTable.setModel(model);
+        kontakTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                kontakTableMouseClicked(evt);
+            }
+        });
         tabelScroll.setViewportView(kontakTable);
 
         tabelPanel.add(tabelScroll, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(tabelPanel, java.awt.BorderLayout.CENTER);
 
-        statusLabel.setText("Status");
+        statusLabel.setText(" ");
         getContentPane().add(statusLabel, java.awt.BorderLayout.PAGE_END);
 
-        jMenu1.setMnemonic('F');
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
+        fileMenu.setMnemonic('F');
+        fileMenu.setText("File");
 
-        jMenu2.setMnemonic('K');
-        jMenu2.setText("Kontak");
-        jMenuBar1.add(jMenu2);
+        keluarItem.setText("Keluar");
+        keluarItem.addActionListener(this::keluarItemActionPerformed);
+        fileMenu.add(keluarItem);
 
-        jMenu3.setMnemonic('B');
-        jMenu3.setText("Bantuan");
+        jMenuBar1.add(fileMenu);
 
-        jMenuItem1.setText("jMenuItem1");
-        jMenu3.add(jMenuItem1);
-        jMenu3.add(jSeparator1);
+        kontakMenu.setMnemonic('K');
+        kontakMenu.setText("Kontak");
 
-        jMenuBar1.add(jMenu3);
+        tambahItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        tambahItem.setText("Tambah");
+        tambahItem.addActionListener(this::tambahItemActionPerformed);
+        kontakMenu.add(tambahItem);
+
+        ubahItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        ubahItem.setText("Ubah");
+        ubahItem.addActionListener(this::ubahItemActionPerformed);
+        kontakMenu.add(ubahItem);
+        kontakMenu.add(jSeparator2);
+
+        hapusItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        hapusItem.setText("Hapus");
+        hapusItem.addActionListener(this::hapusItemActionPerformed);
+        kontakMenu.add(hapusItem);
+
+        jMenuBar1.add(kontakMenu);
+
+        bantuanMenu.setMnemonic('B');
+        bantuanMenu.setText("Bantuan");
+
+        tentangItem.setText("Tentang");
+        tentangItem.addActionListener(this::tentangItemActionPerformed);
+        bantuanMenu.add(tentangItem);
+
+        jMenuBar1.add(bantuanMenu);
 
         setJMenuBar(jMenuBar1);
 
@@ -110,8 +170,138 @@ public class AplikasiKontak extends javax.swing.JFrame {
 
     private void ubahButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ubahButtonActionPerformed
         // TODO add your handling code here:
+        ubah();
     }//GEN-LAST:event_ubahButtonActionPerformed
 
+    private void hapusItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusItemActionPerformed
+        // TODO add your handling code here:
+        hapus();
+    }//GEN-LAST:event_hapusItemActionPerformed
+
+    private void tambahButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahButtonActionPerformed
+        // TODO add your handling code here:
+        tambah();
+    }//GEN-LAST:event_tambahButtonActionPerformed
+
+    private void cariFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cariFieldKeyReleased
+        // TODO add your handling code here:
+        saring();
+    }//GEN-LAST:event_cariFieldKeyReleased
+
+    private void kontakTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kontakTableMouseClicked
+        // TODO add your handling code here:
+        if (evt.getClickCount() == 2 && kontakTable.getSelectedRow() >= 0) {
+            ubah();
+        }
+    }//GEN-LAST:event_kontakTableMouseClicked
+
+    private void keluarItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_keluarItemActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_keluarItemActionPerformed
+
+    private void tambahItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahItemActionPerformed
+        // TODO add your handling code here:
+        tambah();
+    }//GEN-LAST:event_tambahItemActionPerformed
+
+    private void ubahItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ubahItemActionPerformed
+        // TODO add your handling code here:
+        ubah();
+    }//GEN-LAST:event_ubahItemActionPerformed
+
+    private void hapusButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusButtonActionPerformed
+        // TODO add your handling code here:
+        hapus();
+    }//GEN-LAST:event_hapusButtonActionPerformed
+
+    private void tentangItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tentangItemActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(this,
+            "Daftar Kontak\nMini proyek Pertemuan 7 PBO 2", "Tentang",
+            JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_tentangItemActionPerformed
+
+    private void isiContoh() {
+        model.tambah(new Kontak("Siti Rahmah", "081234567890", "siti@contoh.com",
+            Kategori.KAMPUS));
+        model.tambah(new Kontak("Budi Santoso", "082112345678", "budi@contoh.com",
+            Kategori.TEMAN));
+        model.tambah(new Kontak("Ahmad Fauzi", "085398765432", "",
+            Kategori.KELUARGA));
+        model.tambah(new Kontak("Nur Aisyah", "081355512345", "aisyah@contoh.com",
+            Kategori.KAMPUS));
+        model.tambah(new Kontak("Rizky Pratama", "087812341234", "rizky@contoh.com",
+            Kategori.KERJA));
+    }
+    
+    private void saring() {
+        String kata = cariField.getText().trim();
+        if (kata.isEmpty()) {
+            sorter.setRowFilter(null);
+        } else {
+            // (?i): huruf besar dan kecil dianggap sama; 0, 1, 2: kolom yang dicari
+            sorter.setRowFilter(RowFilter.regexFilter("(?i)" + Pattern.quote(kata), 0, 1, 2));
+        }
+        perbaruiStatus();
+    }
+    /**
+    * Mengubah nomor baris tampilan menjadi nomor baris model,
+    * karena tabel dapat diurutkan dan disaring.
+    */
+    private int barisTerpilih() {
+        int barisTampilan = kontakTable.getSelectedRow();
+        if (barisTampilan < 0) {
+            return -1;
+        }
+        return kontakTable.convertRowIndexToModel(barisTampilan);
+    }
+    
+    private void tambah() {
+        Kontak baru = new DialogKontak(this, "Tambah Kontak", null).tampilkan();
+        if (baru != null) {
+            model.tambah(baru);
+            perbaruiStatus();
+        }
+    }
+    
+    private void ubah() {
+        int baris = barisTerpilih();
+        if (baris < 0) {
+            return;
+        }
+        Kontak hasil = new DialogKontak(this, "Ubah Kontak", model.get(baris)).tampilkan();
+        if (hasil != null) {
+            model.ubah(baris, hasil);
+        }
+    }
+    
+    private void hapus() {
+        int baris = barisTerpilih();
+        if (baris < 0) {
+            return;
+        }
+        String nama = model.get(baris).nama();
+        int jawab = JOptionPane.showConfirmDialog(this, "Hapus kontak " + nama + "?",
+            "Konfirmasi Hapus", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        if (jawab == JOptionPane.YES_OPTION) {
+            model.hapus(baris);
+            perbaruiStatus();
+        }
+    }
+    
+    private void perbaruiTombol() {
+    boolean adaPilihan = kontakTable.getSelectedRow() >= 0;
+        ubahButton.setEnabled(adaPilihan);
+        hapusButton.setEnabled(adaPilihan);
+        ubahItem.setEnabled(adaPilihan);
+        hapusItem.setEnabled(adaPilihan);
+    }
+    
+    private void perbaruiStatus() {
+        statusLabel.setText("Menampilkan " + kontakTable.getRowCount()
+            + " dari " + model.getRowCount() + " kontak");  
+    }
     /**
      * @param args the command line arguments
      */
@@ -133,26 +323,31 @@ public class AplikasiKontak extends javax.swing.JFrame {
         }
         //</editor-fold>
 
+        FlatLightLaf.setup();
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new AplikasiKontak().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel atasPanel;
+    private javax.swing.JMenu bantuanMenu;
     private javax.swing.JTextField cariField;
+    private javax.swing.JMenu fileMenu;
     private javax.swing.JButton hapusButton;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenuItem hapusItem;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JPopupMenu.Separator jSeparator2;
+    private javax.swing.JMenuItem keluarItem;
+    private javax.swing.JMenu kontakMenu;
     private javax.swing.JTable kontakTable;
     private javax.swing.JLabel statusLabel;
     private javax.swing.JPanel tabelPanel;
     private javax.swing.JScrollPane tabelScroll;
     private javax.swing.JButton tambahButton;
+    private javax.swing.JMenuItem tambahItem;
+    private javax.swing.JMenuItem tentangItem;
     private javax.swing.JPanel tombolPanel;
     private javax.swing.JButton ubahButton;
+    private javax.swing.JMenuItem ubahItem;
     // End of variables declaration//GEN-END:variables
 }
