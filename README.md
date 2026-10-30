@@ -162,3 +162,68 @@ Perintah tersebut memberikan fokus kembali ke angka1Field setelah kedua isian di
 <img width="327" height="147" alt="Screenshot 2026-10-24 115925" src="https://github.com/user-attachments/assets/2486475b-444b-4751-94e2-bea0c9023942" />
 <img width="328" height="277" alt="Screenshot 2026-10-24 115901" src="https://github.com/user-attachments/assets/8113265a-217f-49d2-a73d-85368632c94c" />
 <img width="1917" height="1020" alt="Screenshot 2026-10-24 115736" src="https://github.com/user-attachments/assets/4a95b4c8-9c01-4f2d-8db0-b2f5d007d098" />
+
+# Tugas 6
+# Eksperimen praktikum 4
+1. Ketik huruf pada isian NPM. Apa yang terjadi dan baris mana di npmFieldKeyTyped yang menyebabkannya?
+2. Isi email dengan siti@, lalu tekan Tab. Kapan pesan kesalahan muncul?
+3. Klik isian Nama tanpa mengetik, lalu tekan Tab. Mengapa tidak ada pesan kesalahan?
+4. Centang persetujuan, lalu klik Daftar dengan form kosong. Isian mana yang mendapat fokus?
+5. Tekan tombol Alt bersama huruf N. Isian mana yang mendapat fokus, dan properti apa yang mengaturnya?
+6. Isi beberapa isian, lalu klik Batal dan pilih No. Apakah data tetap ada?
+
+Jawaban : 
+1. muncul pesan "NPM harus berisi 10 digit angka". Huruf tidak bisa dimasukkan ke kolom NPM karena kolom tersebut hanya menerima angka.
+   Kode if (!Character.isDigit(evt.getKeyChar()) || penuh) {
+    evt.consume();
+}
+3. Pesan kesalahan muncul saat menekan Tab dan berpindah dari kolom email karena format email yang dimasukkan belum benar.
+4. Karena kolom Nama masih kosong. Sistem hanya memeriksa nama saat kolom sudah diisi. Jika kosong, pemeriksaan dilakukan ketika tombol Daftar diklik.
+5. Kolom NPM mendapat fokus terlebih dahulu karena NPM merupakan kolom pertama yang diperiksa dan masih kosong.
+6. Fokus berpindah ke kolom Nama Lengkap karena huruf N ditetapkan sebagai mnemonic pada label Nama. Fitur ini diatur menggunakan properti displayedMnemonic pada label Nama dan labelFor yang menghubungkannya ke kolom Nama.
+7. Ya, data tetap ada karena memilih No berarti membatalkan pengosongan form. Data baru dihapus jika pengguna memilih Yes.
+
+
+# Hasil Evaluasi Heuristik Nielsen
+
+Evaluasi dilakukan menggunakan 10 prinsip heuristik Nielsen untuk mengidentifikasi masalah pada aplikasi form pendaftaran serta memberikan saran perbaikan.
+
+## Tabel Hasil Evaluasi
+
+| No | Heuristik | Temuan | Skor (0-4) | Saran |
+|---|---|---|:---:|---|
+| 1 | Visibilitas Status Sistem | Ringkasan pendaftaran berhasil hanya menampilkan NPM, Nama, dan Jenis Anggota. Informasi Program Studi, Email, dan Nomor HP belum ditampilkan. | 2 | Lengkapi ringkasan dengan informasi pendaftaran yang diperlukan. |
+| 2 | Kesesuaian dengan Dunia Nyata | Tidak ditemukan masalah pada penggunaan istilah dan bahasa dalam form. | 0 | Tidak ada. |
+| 3 | Kendali dan Kebebasan Pengguna | Tidak ditemukan masalah yang dilaporkan terkait pembatalan atau pengembalian tindakan pengguna. | 0 | Tidak ada. |
+| 4 | Konsistensi dan Standar | Teks pada kolom Email dan Nomor HP tetap berwarna abu-abu seperti placeholder meskipun sudah diketik. | 2 | Gunakan warna teks normal ketika kolom sudah berisi input. |
+| 5 | Pencegahan Kesalahan | Combo box Program Studi tidak memiliki pilihan awal "Pilih program studi". Selain itu, ketika berpindah pilihan dari Sistem Informasi ke Teknik Informatika, muncul pesan "Pilih salah satu program studi". | 3 | Tambahkan pilihan awal dan perbaiki validasi agar pilihan program studi yang valid tidak dianggap kosong. |
+| 6 | Mengenali, Bukan Mengingat | Tidak ditemukan masalah yang dilaporkan terkait kebutuhan pengguna untuk mengingat informasi saat mengisi form. | 0 | Tidak ada. |
+| 7 | Fleksibilitas dan Efisiensi | `npmLabel` belum terhubung dengan `npmField` melalui properti `labelFor`, sehingga Alt+P tidak mengarahkan fokus ke kolom NPM. | 2 | Hubungkan `npmLabel` dengan `npmField` dan atur mnemonic yang sesuai. |
+| 8 | Desain Estetis dan Minimalis | Tidak ditemukan masalah tampilan yang dilaporkan selain warna teks Email dan Nomor HP. | 0 | Tidak ada. |
+| 9 | Membantu Memperbaiki Kesalahan | Pengujian validasi NPM, Nama, Email, dan Nomor HP menunjukkan pesan kesalahan sesuai dengan kondisi input yang diuji. | 0 | Tidak ada. |
+| 10 | Bantuan dan Dokumentasi | Tidak ditemukan masalah yang dilaporkan terkait petunjuk atau bantuan penggunaan form. | 0 | Tidak ada. |
+
+
+## Skala Penilaian Tingkat Keparahan Masalah
+
+| Skor | Tingkat | Arti |
+|:---:|---|---|
+| 0 | Bukan Masalah | Tidak mengganggu kegunaan aplikasi. |
+| 1 | Kosmetik | Masalah tampilan yang diperbaiki jika ada waktu. |
+| 2 | Minor | Sedikit memperlambat pengguna dalam menggunakan aplikasi. |
+| 3 | Mayor | Pengguna sering gagal atau bingung, sehingga perlu segera diperbaiki. |
+| 4 | Kritis | Tugas tidak dapat diselesaikan dan wajib diperbaiki. |
+
+Nama peninjau: Putri Sal Sabila       Nama pemilik form: Elvira Eri Saputri
+<img width="1917" height="1078" alt="image" src="https://github.com/user-attachments/assets/77ca08e9-a4a8-4a8d-83ad-03046d67a825" />
+
+<img width="485" height="777" alt="image" src="https://github.com/user-attachments/assets/eb353b29-1674-4aef-927a-78fcec012865" />
+
+# Tabel Temuan Peer Review dan Perbaikan
+
+| No. | Temuan dari Teman | Perbaikan yang Dilakukan | Commit |
+|---|---|---|---|
+| 1 | Ringkasan pendaftaran hanya menampilkan NPM, Nama, dan Jenis Anggota. | Menambahkan informasi Program Studi, Email, dan Nomor HP pada ringkasan pendaftaran. | `fix: melengkapi ringkasan pendaftaran` |
+| 2 | Teks pada kolom Email dan Nomor HP tetap berwarna abu-abu setelah diketik. | Memperbaiki warna teks agar menggunakan warna normal ketika kolom diisi. | `fix: memperbaiki warna teks input` |
+| 3 | ComboBox Program Studi tidak memiliki pilihan awal dan validasi terkadang menganggap pilihan valid sebagai kosong. | Menambahkan pilihan awal "Pilih program studi" dan memperbaiki validasi ComboBox. | `fix: memperbaiki validasi program studi` |
+| 4 | Mnemonic NPM tidak berfungsi ketika menekan Alt+P. | Menghubungkan label NPM dengan kolom input dan memperbaiki fungsi pintasan keyboard. | `fix: memperbaiki mnemonic NPM` |
