@@ -227,3 +227,25 @@ Nama peninjau: Putri Sal Sabila       Nama pemilik form: Elvira Eri Saputri
 | 2 | Teks pada kolom Email dan Nomor HP tetap berwarna abu-abu setelah diketik. | Memperbaiki warna teks agar menggunakan warna normal ketika kolom diisi. | `fix: Perbaikan dari peer preview heuristik` |
 | 3 | ComboBox Program Studi tidak memiliki pilihan awal dan validasi terkadang menganggap pilihan valid sebagai kosong. | Menambahkan pilihan awal "Pilih program studi" dan memperbaiki validasi ComboBox. | `fix: Perbaikan dari peer preview heuristik` |
 | 4 | Mnemonic NPM tidak berfungsi ketika menekan Alt+P. | Menghubungkan label NPM dengan kolom input dan memperbaiki fungsi pintasan keyboard. | `fix: Perbaikan dari peer preview heuristik` |
+
+# Tugas 7
+
+# Eksperimen
+1. Di KontakTableModel, jadikan baris fireTableRowsInserted(baris, baris); sebagai komentar, lalu tambah kontak baru. Apakah tabel langsung berubah?
+2. Di method barisTerpilih, ganti isinya menjadi return kontakTable.getSelectedRow();. Cari kata "ah", pilih Ahmad Fauzi, lalu klik Hapus dan pilih No. Nama siapa yang muncul di dialog konfirmasi?
+3. Di konstruktor DialogKontak, ubah super(pemilik, judul, true) menjadi false. Saat dialog terbuka, coba klik jendela utama. Apa yang terjadi pada kontak yang ditambahkan?
+4. Tekan Ctrl+N, Ctrl+E, dan Ctrl+D. Mengapa Ctrl+E dan Ctrl+D tidak bekerja saat tidak ada baris yang dipilih?
+5. Di tab Design, ubah accelerator hapusItem menjadi tombol Delete tanpa Ctrl. Baris apa yang berubah diinitComponents()?
+6. Ubah deklarasi atribut menjadi private KontakTableModel model; lalu isi model = new KontakTableModel(); setelah initComponents(). Jalankan. Pesan error apa yang muncul dan mengapa?
+
+Jawaban:
+1. Tidak. Data masuk ke daftar, tetapi tabel tidak langsung diperbarui karena tidak ada pemberitahuan perubahan data.
+2. Nama yang muncul bisa berbeda dari Ahmad Fauzi karena getSelectedRow() mengambil nomor baris tampilan, bukan posisi data asli.
+3. Jendela utama tetap bisa diklik. Namun, kontak yang ditambahkan bisa tidak masuk ke tabel karena program tidak menunggu dialog ditutup.
+4. Ctrl+N Tetap berfungsi karena menu Tambah bisa digunakan tanpa memilih baris, Ctrl+E Tidak berfungsi jika belum memilih kontak karena menu Ubah dinonaktifkan, Ctrl+D Tidak berfungsi jika belum memilih kontak karena menu Hapus dinonaktifkan.
+Jadi, Ctrl+E dan Ctrl+D hanya bisa digunakan jika ada kontak yang dipilih.
+5. Baris setAccelerator() berubah dari tombol Ctrl+D menjadi tombol Delete tanpa Ctrl.
+6. Error muncul karena model masih bernilai null saat digunakan oleh tabel. Akibatnya, tabel tidak bisa menggunakan model tersebut.
+
+# Link Video Demo Proyek
+https://drive.google.com/file/d/1c0jxevWMbgDBZL5nisREXPYQT754FDO1/view?usp=sharing
