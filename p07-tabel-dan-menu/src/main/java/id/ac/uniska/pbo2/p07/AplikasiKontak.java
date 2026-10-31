@@ -227,7 +227,7 @@ public class AplikasiKontak extends javax.swing.JFrame {
             Kategori.KAMPUS));
         model.tambah(new Kontak("Budi Santoso", "082112345678", "budi@contoh.com",
             Kategori.TEMAN));
-        model.tambah(new Kontak("Ahmad Fauzi", "085398765432", "",
+        model.tambah(new Kontak("Ahmad Fauzi", "085398765432", "ahmad@gmail.com",
             Kategori.KELUARGA));
         model.tambah(new Kontak("Nur Aisyah", "081355512345", "aisyah@contoh.com",
             Kategori.KAMPUS));
